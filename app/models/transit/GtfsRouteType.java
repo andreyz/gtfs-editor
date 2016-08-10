@@ -10,7 +10,10 @@ public enum GtfsRouteType {
 	FERRY,
 	CABLECAR,
 	GONDOLA,
-	FUNICULAR;
+	FUNICULAR,
+	TAXI,
+	AIRPLANE,
+	CAR;
 	
 	public int toGtfs() {
 		switch(this)
@@ -39,6 +42,38 @@ public enum GtfsRouteType {
 	}
 	
 	public static GtfsRouteType fromGtfs (int gtfsType) {
+
+		if (gtfsType >= 100 && gtfsType < 200){ // Railway Service
+			return RAIL;
+		} else if (gtfsType >= 200 && gtfsType < 300){ //Coach Service
+			return BUS;
+		} else if (gtfsType >= 300 && gtfsType < 500){ //Suburban Railway Service and Urban Railway service
+			if (gtfsType >= 401 && gtfsType <= 402) {
+				return SUBWAY;
+			}
+			return RAIL;
+		} else if (gtfsType >= 500 && gtfsType < 700){ //Metro Service and Underground Service
+			return SUBWAY;
+		} else if (gtfsType >= 700 && gtfsType < 900){ //Bus Service and Trolleybus service
+			return BUS;
+		} else if (gtfsType >= 900 && gtfsType < 1000){ //Tram service
+			return TRAM;
+		} else if (gtfsType >= 1000 && gtfsType < 1100){ //Water Transport Service
+			return FERRY;
+		} else if (gtfsType >= 1100 && gtfsType < 1200){ //Air Service
+			return AIRPLANE;
+		} else if (gtfsType >= 1200 && gtfsType < 1300){ //Ferry Service
+			return FERRY;
+		} else if (gtfsType >= 1300 && gtfsType < 1400){ //Telecabin Service
+			return GONDOLA;
+		} else if (gtfsType >= 1400 && gtfsType < 1500){ //Funicalar Service
+			return FUNICULAR;
+		} else if (gtfsType >= 1500 && gtfsType < 1600){ //Taxi Service
+			return TAXI;
+		} else if (gtfsType >= 1600 && gtfsType < 1700){ //Self drive
+			return CAR;
+		}
+
 		switch (gtfsType)
 		{
 		case 0:
